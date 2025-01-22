@@ -1,0 +1,28 @@
+[project]
+name = "microservice"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "avishay"}
+]
+license = {text = "unlicensed"}
+readme = "README.md"
+requires-python = "^3.9"
+dependencies = [
+    "fastapi (>=0.115.6,<0.116.0)",
+    "pymongo (>=4.10.1,<5.0.0)",
+    "python-dotenv (>=1.0.1,<2.0.0)",
+    "gunicorn (>=23.0.0,<24.0.0)",
+    "flask (>=3.1.0,<4.0.0)",
+    "logging (>=0.4.9.6,<0.5.0.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
