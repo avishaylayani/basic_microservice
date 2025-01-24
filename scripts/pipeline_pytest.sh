@@ -14,7 +14,7 @@ sudo apt upgrade -y
 sudo apt install -y python3-poetry python3-pytest python3-dev
 
 # Install project dependencies into the Poetry environment
-poetry install
 poetry lock [--no-update]
+poetry install
 # Run pytest and save the results to the markdown file
 pytest test.py
