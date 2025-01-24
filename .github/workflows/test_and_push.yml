@@ -15,7 +15,7 @@ jobs:
 
       - name: Install pytest
         run: |
-            scripts/pipeline_pytest.sh
+            bash scripts/pipeline_pytest.sh
 
   build:
     name: Build Pipeline
