@@ -10,13 +10,13 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# Set up template for logging to file
+# Set up logger to file
 logging.basicConfig(
     filename="logs/app.log",  # Log file name
     level=logging.WARNING,  # Log level
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"  # Log format
 )
-logger = logging.getLogger(__name__)  # Create logger for this file
+logger = logging.getLogger(__name__)
 
 # Define Pydantic model for data validation
 class Item(BaseModel):
