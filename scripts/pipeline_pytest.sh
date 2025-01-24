@@ -11,7 +11,9 @@ set -o pipefail # Return non-zero status if any part of a pipeline fails
 ## Installing poetry and pytest 
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt install -y python3 python3-poetry python3-pytest python3-dev
+sudo apt install -y python3 
+pip install poetry
+pip install pytest
 
 # Install project dependencies into the Poetry environment
 poetry lock
