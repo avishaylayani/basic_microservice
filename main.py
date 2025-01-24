@@ -12,9 +12,9 @@ app = Flask(__name__)
 
 # Set up logger to file
 logging.basicConfig(
-    filename="logs/app.log",  # Log file name
-    level=logging.WARNING,  # Log level
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"  # Log format
+    filename="logs/app.log",
+    level=logging.WARNING,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
@@ -28,11 +28,11 @@ if os.getenv("MONGO_URI"):
     # MongoDB for production
     import pymongo
     client = pymongo.MongoClient(os.getenv("MONGO_URI"))
-    db = client.get_database()  # This will be the real DB
+    db = client.get_database()
 else:  
     # Mocking the MongoDB behavior
     from unittest.mock import MagicMock
-    db = MagicMock()  # Create a mock object
+    db = MagicMock()
 
 
 ## Health check, can be later used in K8S health checks
@@ -41,26 +41,26 @@ def health_check():
     logger.warning("GET request to /health endpoint")
     return jsonify({"status": "200"})
 
-## Getting all items from the DB
+## Getting all items from the DB - convertion of object_id to string is required
 @app.route("/items", methods=["GET"])
 def read_items():
     logger.warning("GET request to /items endpoint")
     try:
-        items = list(db.items.find())  # Ensure the cursor is fully consumed into a list
+        items = list(db.items.find())
         for item in items:
-            item['_id'] = str(item['_id'])  # Convert ObjectId to string for JSON compatibility - needed in order to pull the data
+            item['_id'] = str(item['_id'])
         if not items:
-            logger.warning("No items found in the database.")  # Log if no items are found
+            logger.warning("No items found in the database.")
         return jsonify(items)
     except Exception as e:
         logger.error(f"Error fetching items: {e}")
         return jsonify({"error": "Failed to fetch items"}), 500
 
-## Pushing json file into the db
+## Pushing json file into the db by using unpacking item_data into keywords, for the Item validation
 @app.route("/input", methods=["POST"])
 def create_item():
     item_data = request.get_json()
-    item = Item(**item_data) ## Unpacking item_data into keywords, for the Item validation
+    item = Item(**item_data)
     db.items.insert_one(item.dict()) 
     logger.warning(f"Item created: {item.dict()}")
     return jsonify({"message": "Item created successfully", "item": item.dict()}), 201
