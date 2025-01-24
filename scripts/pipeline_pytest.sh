@@ -19,4 +19,4 @@ pip install pytest
 poetry lock
 poetry install
 # Run pytest and save the results to the markdown file
-pytest test.py
+poetry run pytest test.py
