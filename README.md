@@ -1,4 +1,4 @@
-# Microservice Projectsss
+# Microservice Project
 
 ## Overview
 This project demonstrates a basic microservice architecture with a REST API, MongoDB integration, logging, and containerized deployment using Kubernetes. The image is built and pushed to DockerHub automatically through GitHub Actions.
