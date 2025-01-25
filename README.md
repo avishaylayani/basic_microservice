@@ -8,9 +8,10 @@ This project demonstrates a basic microservice architecture with a REST API, Mon
 ## Features
 - **REST API Endpoints**:
   - `GET /health`: Service health check.
-  - `POST /input`: Add an item to the database.
+  - `POST /input`: Add an item to the database
+    - The API uses pydantic model to verify the data, the data must be: `{"name":str ,"description":str}`
   - `GET /items`: Retrieve all items.
-- **Database**: MongoDB or another database of choice.
+- **Database**: MongoDB.
 
 ---
 
