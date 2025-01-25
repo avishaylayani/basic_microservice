@@ -15,19 +15,23 @@ jobs:
 
       - name: Install pytest
         run: |
-            bash scripts/pipeline_pytest.sh
-#   build:
-#     name: Build Pipeline
-#     runs-on: ubuntu-latest
-#     needs: tests
-#     steps:
-#       - name: Checkout Code
-#         uses: actions/checkout@v3
+            ## Installing poetry and pytest 
+            sudo apt update -y
+            sudo apt upgrade -y
+            sudo apt install -y python3 
+            pip install poetry
+            pip install pytest
+
+            # Install project dependencies into the Poetry environment
+            poetry lock
+            poetry install
+            # Run pytest
+            poetry run pytest src/test.py
 
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
-    needs: tests  # Ensure this job runs after `build`
+    needs: tests
     environment: ${{ github.ref_name }}
     permissions:
       packages: write
@@ -50,7 +54,7 @@ jobs:
         with:
           images: ${{ vars.DOCKER_USERNAME }}/${{ vars.IMAGE_NAME }}
 
-      - name: Build and push Docker image
+      - name: Build and push Docker image(One with latest, and the other with the run number as the tag)
         id: push
         uses: docker/build-push-action@v3
         with:

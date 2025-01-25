@@ -1,7 +1,0 @@
-rep_set:
-    microservice: 2
-    mongodb: 1
-images:
-    microservice: alayani/microservice:test
-    mongodb: mongo:latest
-MONGO_URI: mongodb://mongodb:27017/items

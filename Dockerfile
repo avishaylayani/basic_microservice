@@ -19,4 +19,4 @@ RUN pip install gunicorn
 EXPOSE 8000
 
 # Run the app with Gunicorn
-CMD ["gunicorn", "--config", "gunicorn_conf.py", "main:app"]
+CMD ["gunicorn", "--config", "src/gunicorn_conf.py", "src.main:app"]
