@@ -23,7 +23,7 @@ spec:
           env:          
             - name: MONGO_URI
               value: {{ .Values.MONGO_URI }}
-          image: {{ .Values.images.details_app }}
+          image: {{ .Values.images.microservice }}
           ports:
             - containerPort: 8000
           resources:
