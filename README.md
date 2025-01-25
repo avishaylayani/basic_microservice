@@ -27,6 +27,7 @@ The pipeline is fully automated via **GitHub Actions**.The trigger is pushing to
 1. **Unit Tests**: Ensures code quality.
 2. **Docker Build & Push**: Builds the image and pushes it to DockerHub.
 3. **Kubernetes Rollout**: Rollouts the application to the Kubernetes cluster using Helm.
+    -   This is not working yet, as there is no DNS configured, and the IP and machine details are not fixed. These variables in github are not set. 
 
 There is no need for manual intervention in the pipeline as everything is handled automatically through GitHub Actions.
 
