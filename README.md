@@ -20,6 +20,7 @@ To run this project, ensure the following are installed:
 
 - **Kubernetes**: Required for deployment.
 - **Helm**: Used to manage Kubernetes resources.
+- **Docker**: For building container images.
 ---
 
 ## CI/CD Pipeline (GitHub Actions)
