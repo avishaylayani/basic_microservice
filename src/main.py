@@ -1,11 +1,7 @@
 from flask import Flask, request, jsonify
 import os
-from dotenv import load_dotenv
 from pydantic import BaseModel
 import logging
-
-# Load environment variables
-load_dotenv()
 
 app = Flask(__name__)
 
